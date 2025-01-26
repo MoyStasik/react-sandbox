@@ -1,7 +1,16 @@
 const buttonsConfig  = [
-    {btnName: "Главная"},
-    {btnName: "Поиск по событиям"},
-    {btnName: "Профиль"}
+    {
+        btnName: "Главная",
+        btnType: "main",
+    },
+    {
+        btnName: "Создать заметку",
+        btnType: "new",
+    },
+    {
+        btnName: "Профиль",
+        btnType: "profile",
+    }
 ];
 
 export default buttonsConfig;

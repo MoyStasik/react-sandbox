@@ -1,0 +1,37 @@
+.create-note-form {
+    padding: 10px;
+}
+
+.create-note__span-header {
+    padding-left: 115px;
+}
+
+.create-note-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-note-form__input-name {
+    height: 40px;
+    width: 300px;
+    border-radius: 10px;
+    padding: 5px;
+
+    font-size: 16px;
+}
+
+.create-note-form__textarea {
+    height: 60px;
+    width: 300px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 25px;
+}
+
+.create-note-form__span-new-note {
+    color: #fff;
+    font-size: 16px;
+    margin-top: 20px;
+    padding-left: 105px;
+    margin-bottom: 10px;
+}

@@ -2,37 +2,42 @@ import "./header.css"
 import "../config/buttonsConfig"
 import buttonsConfig from "../config/buttonsConfig"
 import { useState } from "react"
+import CreateNoteForm from "../../createNoteForm";
+import Button from "../../../entities/button/";
 
-type buttonType = 'main' | 'search' | 'profile' | null;
-
-const Button = ({btnName, onClickHandle, isActive} : {btnName:string, onClickHandle: () => void, isActive : boolean}) =>{
-    return (
-        <button className={isActive ? "active" : ""} onClick={onClickHandle}>{btnName}</button>
-    )
-}
-
+type buttonType = string | null;
 
 
 const Header = () => {
     const [clicked, setClicked] = useState<buttonType>(null);
-    const [active, setActive] = useState(false);
-    const clickHandle = (btnType : buttonType) => {
+    const [newNote, setNewNote] = useState(false);
+    const clickHandle = (btnType : string) => {
         setClicked(btnType);
-        setActive(true);
+        setNewNote(false);
+    }
+
+    function handleNewNote() {
+        setNewNote(true);
+        setClicked("new");
     }
 
     return (
         <>
             <div className="header" style={{color: "#fff"}}>
-                <span className="header__span">Это мой календарь</span>
+                <span className="header__span">Мои заметки</span>
                 <div className="navigation-buttons">
-                    
-                    <Button {...buttonsConfig[0]} onClickHandle = {() => clickHandle("main")} isActive={clicked === "main"} />
-                    <Button {...buttonsConfig[1]} onClickHandle = {() => clickHandle("search")} isActive={clicked === "search"} />
-                    <Button {...buttonsConfig[2]} onClickHandle = {() => clickHandle("profile")} isActive={clicked === "profile"} />
+                    {buttonsConfig.map((element) => <Button key={element.btnType} {...element} onClickHandle={() => 
+                        {
+                            if (element.btnType !== "new") {
+                                return clickHandle(element.btnType);
+                            }
+                            setClicked(element.btnType);
+                            return handleNewNote();
+                        }}
+                         isActive={clicked === element.btnType} />)}
                 </div>
             </div>
-            <p style={{color: "#fff"}}>{clicked}</p>
+            {newNote && <CreateNoteForm /> }
         </>
     );
 
